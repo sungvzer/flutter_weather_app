@@ -1,0 +1,9 @@
+{
+  "overview": {
+    "header": "Today's overview",
+    "wind_speed": "Wind speed",
+    "rain_chance": "Rain chance",
+    "temperature": "Temperature",
+    "uv_index": "UV index"
+  }
+}
