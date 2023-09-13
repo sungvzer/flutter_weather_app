@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:weather_app/constants.dart';
 import 'package:weather_app/pages/home_page/components/date_text.dart';
 import 'package:weather_app/pages/home_page/components/hourly_forecast.dart';
 import 'package:weather_app/pages/home_page/components/overview_grid.dart';
 import 'package:weather_app/pages/home_page/components/temperature_chart.dart';
+import 'package:weather_app/providers/weather_provider.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -32,7 +35,19 @@ class HomePage extends ConsumerWidget {
                     children: [
                       const DateText(),
                       IconButton(
-                          onPressed: () {}, icon: const Icon(Icons.refresh))
+                        onPressed: () async {
+                          final service =
+                              ref.read(weatherNotifierProvider.notifier);
+                          service.getForecasts();
+                        },
+                        tooltip:
+                            FlutterI18n.translate(context, 'general.refresh'),
+                        padding: EdgeInsets.zero,
+                        icon: const Icon(
+                          FontAwesomeIcons.arrowsRotate,
+                        ),
+                        color: AppConstants.iconColor,
+                      ),
                     ],
                   ),
                 ),

@@ -17,6 +17,7 @@ class WeatherNotifier extends StateNotifier<AsyncValue<WeatherForecast>> {
   final WeatherService _service;
 
   void getForecasts() async {
+    state = const AsyncLoading();
     state = await _service.getForecast();
   }
 }

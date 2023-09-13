@@ -11,5 +11,8 @@
   },
   "hourly": {
     "header": "Hourly forecasts"
+  },
+  "general": {
+    "refresh": "Refresh"
   }
 }
