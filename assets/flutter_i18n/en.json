@@ -5,5 +5,11 @@
     "rain_chance": "Rain chance",
     "temperature": "Temperature",
     "uv_index": "UV index"
+  },
+  "graph": {
+    "header": "Graph"
+  },
+  "hourly": {
+    "header": "Hourly forecasts"
   }
 }

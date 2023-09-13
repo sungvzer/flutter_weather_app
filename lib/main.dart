@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:logging/logging.dart';
-import 'package:weather_app/pages/home_page.dart';
+import 'package:weather_app/pages/home_page/home_page.dart';
 
 void main() {
   // Logger.root.level = Level.ALL; // defaults to Level.INFO
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           translationLoader: FileTranslationLoader(
             useCountryCode: false,
             // Enable if testing other languages
-            forcedLocale: const Locale('it'),
+            // forcedLocale: const Locale('it'),
           ),
           missingTranslationHandler: (key, locale) {
             Logger.root.warning("Missing Key: $key");

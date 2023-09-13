@@ -5,5 +5,11 @@
         "rain_chance": "Possibilità di pioggia",
         "temperature": "Temperatura",
         "uv_index": "Indice UV"
+    },
+    "graph": {
+        "header": "Grafico"
+    },
+    "hourly": {
+        "header": "Previsioni orarie"
     }
 }
