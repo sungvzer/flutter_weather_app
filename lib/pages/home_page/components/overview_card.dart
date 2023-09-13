@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:weather_app/constants.dart';
 import 'package:weather_app/models/weather_forecast.dart';
 import 'package:weather_app/providers/weather_provider.dart';
@@ -73,58 +74,66 @@ class OverviewCard extends ConsumerWidget {
     }
   }
 
+  Card getCardFromData(BuildContext context, WeatherForecast data) {
+    final title = getTitle(context);
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 20, 10, 20),
+        child: Row(
+          children: [
+            Skeleton.shade(
+              child: Icon(
+                getIcon(),
+                size: 25,
+                color: AppConstants.iconColor,
+              ),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    title,
+                    overflow: TextOverflow.fade,
+                    softWrap: false,
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          color: Colors.black.withAlpha(150),
+                          fontWeight: FontWeight.w400,
+                        ),
+                  ),
+                  Text(
+                    getValue(data),
+                    style: Theme.of(context).textTheme.titleLarge,
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context, ref) {
     final weather = ref.watch(weatherNotifierProvider);
-    final title = getTitle(context);
 
-    return weather.when(
-      data: (data) {
-        return Card(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 20, 10, 20),
-            child: Row(
-              children: [
-                Icon(
-                  getIcon(),
-                  size: 25,
-                  color: AppConstants.iconColor,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        title,
-                        overflow: TextOverflow.fade,
-                        softWrap: false,
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              color: Colors.black.withAlpha(150),
-                              fontWeight: FontWeight.w400,
-                            ),
-                      ),
-                      Text(
-                        getValue(data),
-                        style: Theme.of(context).textTheme.titleLarge,
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-        );
-      },
-      error: (error, stackTrace) {
-        return Container();
-      },
-      loading: () {
-        return const CircularProgressIndicator();
-      },
+    return Skeletonizer(
+      enabled: weather.isLoading,
+      child: weather.when(
+        data: (data) => getCardFromData(context, data),
+        error: (error, stackTrace) {
+          return Container();
+        },
+        loading: () {
+          return getCardFromData(context, mockedWeatherForecast);
+        },
+      ),
     );
   }
 }

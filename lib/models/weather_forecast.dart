@@ -45,3 +45,15 @@ class WeatherForecast {
     );
   }
 }
+
+final mockedWeatherForecast = WeatherForecast(
+  latitude: 40,
+  longitude: 30,
+  temperatures: List<double>.generate(24, (index) => 10),
+  precipitation: List<int>.generate(24, (index) => 10),
+  wmoCodes: List<int>.generate(24, (index) => 1),
+  sunsetHour: 7,
+  sunriseHour: 20,
+  uvIndex: 3.5,
+  windSpeed: List<double>.generate(24, (index) => 10),
+);
