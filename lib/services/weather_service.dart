@@ -46,7 +46,11 @@ class WeatherService {
           method: 'GET',
         ),
       );
-      data['town'] = response.data['address']['town'];
+      if (response.statusCode != 200) {
+        data['town'] = '???';
+      } else {
+        data['town'] = response.data['address']['town'];
+      }
 
       WeatherForecast forecast = WeatherForecast.fromJson(data);
 
