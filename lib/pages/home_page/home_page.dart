@@ -11,67 +11,70 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(context, ref) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 70,
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              border: Border(
-                bottom: BorderSide(color: Colors.black12),
+    return Container(
+      color: const Color(0xfff0f4fa),
+      child: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            toolbarHeight: 70,
+            flexibleSpace: Container(
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(color: Colors.black12),
+                ),
               ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(15),
-              child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const DateText(),
-                    IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.refresh))
-                  ],
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const DateText(),
+                      IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.refresh))
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        body: ListView(
-          padding: const EdgeInsets.fromLTRB(15, 30, 15, 30),
-          physics: const BouncingScrollPhysics(),
-          children: [
-            Text(
-              FlutterI18n.translate(context, "overview.header"),
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const OverviewGrid(),
-            const SizedBox(
-              height: 30,
-            ),
-            Text(
-              FlutterI18n.translate(context, "hourly.header"),
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const HourlyForecast(),
-            const SizedBox(
-              height: 30,
-            ),
-            Text(
-              FlutterI18n.translate(context, "graph.header"),
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const TemperatureChart()
-          ],
+          body: ListView(
+            padding: const EdgeInsets.fromLTRB(15, 30, 15, 30),
+            physics: const BouncingScrollPhysics(),
+            children: [
+              Text(
+                FlutterI18n.translate(context, "overview.header"),
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const OverviewGrid(),
+              const SizedBox(
+                height: 30,
+              ),
+              Text(
+                FlutterI18n.translate(context, "hourly.header"),
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const HourlyForecast(),
+              const SizedBox(
+                height: 30,
+              ),
+              Text(
+                FlutterI18n.translate(context, "graph.header"),
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const TemperatureChart()
+            ],
+          ),
         ),
       ),
     );
