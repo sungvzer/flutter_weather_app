@@ -1,12 +1,10 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_app/pages/home_page/components/date_text.dart';
 import 'package:weather_app/pages/home_page/components/hourly_forecast.dart';
-import 'package:weather_app/pages/home_page/components/line_chart.dart';
 import 'package:weather_app/pages/home_page/components/overview_grid.dart';
-import 'package:weather_app/providers/weather_provider.dart';
+import 'package:weather_app/pages/home_page/components/temperature_chart.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -72,37 +70,10 @@ class HomePage extends ConsumerWidget {
             const SizedBox(
               height: 20,
             ),
-            const TemperatureLineChart()
+            const TemperatureChart()
           ],
         ),
       ),
-    );
-  }
-}
-
-class TemperatureLineChart extends ConsumerWidget {
-  const TemperatureLineChart({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context, ref) {
-    final weather = ref.watch(weatherNotifierProvider);
-
-    return weather.when(
-      data: (data) {
-        final temperatures = data.temperatures;
-
-        return CustomLineChart(
-          spots: temperatures.indexed.map(
-            (pair) {
-              return FlSpot(pair.$1.toDouble(), pair.$2);
-            },
-          ).toList(),
-        );
-      },
-      error: ((error, stackTrace) => Container()),
-      loading: () => const CircularProgressIndicator(),
     );
   }
 }
