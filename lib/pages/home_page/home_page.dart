@@ -6,6 +6,7 @@ import 'package:weather_app/constants.dart';
 import 'package:weather_app/pages/home_page/components/date_text.dart';
 import 'package:weather_app/pages/home_page/components/hourly_forecast.dart';
 import 'package:weather_app/pages/home_page/components/overview_grid.dart';
+import 'package:weather_app/pages/home_page/components/overview_title.dart';
 import 'package:weather_app/pages/home_page/components/temperature_chart.dart';
 import 'package:weather_app/providers/weather_provider.dart';
 
@@ -58,10 +59,7 @@ class HomePage extends ConsumerWidget {
             padding: const EdgeInsets.fromLTRB(15, 30, 15, 30),
             physics: const BouncingScrollPhysics(),
             children: [
-              Text(
-                FlutterI18n.translate(context, "overview.header"),
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
+              const OverviewTitle(),
               const SizedBox(
                 height: 20,
               ),

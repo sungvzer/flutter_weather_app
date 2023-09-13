@@ -11,6 +11,7 @@ class WeatherForecast {
   final int sunsetHour;
 
   final double uvIndex;
+  final String town;
 
   const WeatherForecast({
     required this.latitude,
@@ -22,6 +23,7 @@ class WeatherForecast {
     required this.sunriseHour,
     required this.uvIndex,
     required this.windSpeed,
+    required this.town,
   });
 
   static WeatherForecast fromJson(Map<dynamic, dynamic> json) {
@@ -42,6 +44,7 @@ class WeatherForecast {
       sunsetHour: sunsetDate.hour,
       sunriseHour: sunriseDate.hour,
       uvIndex: json['daily']['uv_index_max'][0],
+      town: json['town'],
     );
   }
 }
@@ -56,4 +59,5 @@ final mockedWeatherForecast = WeatherForecast(
   sunriseHour: 20,
   uvIndex: 3.5,
   windSpeed: List<double>.generate(24, (index) => 10),
+  town: 'Very Long Town Name',
 );

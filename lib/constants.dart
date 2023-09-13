@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 
 class AppConstants {
   static Color iconColor = Colors.blue.shade500;
-  static String apiUrl = 'https://api.open-meteo.com/v1/forecast';
-  static String apiParams =
-      '?latitude=40.8762&longitude=14.5195&hourly=temperature_2m,precipitation_probability,weathercode&daily=sunrise,sunset&timezone=auto&forecast_days=1';
+  static String weatherApiUrl = 'https://api.open-meteo.com/v1/forecast';
+  static String locationApiUrl = 'https://geocode.maps.co/reverse';
 
   static final wmoToImageCode = {
     0: "01",
