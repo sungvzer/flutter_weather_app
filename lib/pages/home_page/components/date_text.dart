@@ -17,7 +17,7 @@ class _DateTextState extends State<DateText> {
 
   @override
   Widget build(BuildContext context) {
-    String locale = 'it_IT'; //Localizations.localeOf(context).languageCode;
+    String locale = Localizations.localeOf(context).languageCode;
     return FutureBuilder(
       future: initializeDateFormatting(locale, null),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
