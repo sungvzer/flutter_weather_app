@@ -23,4 +23,25 @@ class WeatherForecast {
     required this.uvIndex,
     required this.windSpeed,
   });
+
+  static WeatherForecast fromJson(Map<dynamic, dynamic> json) {
+    final sunriseString = json['daily']['sunrise'][0] as String;
+    DateTime sunriseDate = DateTime.parse(sunriseString);
+
+    final sunsetString = json['daily']['sunset'][0] as String;
+    DateTime sunsetDate = DateTime.parse(sunsetString);
+
+    return WeatherForecast(
+      latitude: json['latitude'] as double,
+      longitude: json['longitude'] as double,
+      temperatures: List<double>.from(json['hourly']['temperature_2m']),
+      windSpeed: List<double>.from(json['hourly']['windspeed_10m']),
+      precipitation:
+          List<int>.from(json['hourly']['precipitation_probability']),
+      wmoCodes: List<int>.from(json['hourly']['weathercode']),
+      sunsetHour: sunsetDate.hour,
+      sunriseHour: sunriseDate.hour,
+      uvIndex: json['daily']['uv_index_max'][0],
+    );
+  }
 }
