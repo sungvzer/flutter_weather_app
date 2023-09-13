@@ -49,7 +49,8 @@ class WeatherService {
       if (response.statusCode != 200) {
         data['town'] = '???';
       } else {
-        data['town'] = response.data['address']['town'];
+        data['town'] = response.data['address']['town'] ??
+            response.data['address']['city'];
       }
 
       WeatherForecast forecast = WeatherForecast.fromJson(data);
