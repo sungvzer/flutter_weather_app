@@ -108,7 +108,7 @@ class OverviewCard extends ConsumerWidget {
                   ),
                   Text(
                     getValue(data),
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: Theme.of(context).textTheme.bodyLarge,
                   )
                 ],
               ),

@@ -23,9 +23,13 @@ class OverviewTitle extends ConsumerWidget {
             style: Theme.of(context).textTheme.titleLarge,
           ),
         ),
-        Text(
-          data.town,
-          style: Theme.of(context).textTheme.titleLarge,
+        Expanded(
+          child: Text(
+            data.town,
+            style: Theme.of(context).textTheme.titleLarge,
+            overflow: TextOverflow.fade,
+            softWrap: false,
+          ),
         )
       ],
     );
